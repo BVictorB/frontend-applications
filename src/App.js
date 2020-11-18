@@ -1,34 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react'
+import Practice from './components/Practice'
+import Sidebar from './components/Sidebar/Sidebar'
+import Map from './components/Map/Map'
 
-export default () => {
-  const [state, setState] = useState(() => {
-    return {
-      count: 100,
-      color: 'hotpink'
-    }
-  })
-
-  const count = state.count
-  const color = state.color
-
-  function countUp () {
-    setState(prevState => {
-      return { ...prevState, count: prevState.count++ }
-    })
-  }
-
-  function countDown () {
-    setState(prevState => {
-      return { ...prevState, count: prevState.count-- }
-    })
-  }
-
+function App() {
   return (
-    <div>
-      <button onClick={countDown}>-</button>
-      <span>{count}</span>
-      <button onClick={countUp}>+</button>
-      <p>{color}</p>
-    </div>
+    <>
+      <Practice />
+      <Sidebar />
+      <Map />
+    </>
   )
 }
+
+export default App

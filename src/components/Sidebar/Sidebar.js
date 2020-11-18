@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Sidebar.css';
 
-export default () => {
-  const [state, setState] = useState(() => {
+function Sidebar() {
+  const [state] = useState(() => {
     return {
       garage: {
         name: 'testGarage',
@@ -16,23 +16,17 @@ export default () => {
       }
     }
   })
-
-  const
-    garageName = state.garage.name,
-    garageYear = state.garage.year,
-    garageCapacity = state.garage.capacity,
-    areaName = state.area.name,
-    areaYear = state.area.year,
-    areaPrice = state.area.price
-
+  
   return (
     <div className="m-sidebar">
-      <h1>{garageName}</h1>
-      <p>Year of opening: {garageYear}</p>
-      <p>Capacity: {garageCapacity}</p>
-      <h2>{areaName}</h2>
-      <p>Year: {areaYear}</p>
-      <p>Price: €{areaPrice}</p>
+      <h1>{state.garage.name}</h1>
+      <p>Year of opening: {state.garage.year}</p>
+      <p>Capacity: {state.garage.capacity}</p>
+      <h2>{state.area.name}</h2>
+      <p>Year: {state.area.year}</p>
+      <p>Price: €{state.area.price}</p>
     </div>
   )
 }
+
+export default Sidebar
