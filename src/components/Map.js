@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Garages from './Garages'
 import Sidebar from './Sidebar'
+import fetchData from '../helper/fetchData'
 
 function Map() {
   const [error, setError] = useState(null)
@@ -9,16 +10,15 @@ function Map() {
   const [sidebarState, setSidebarState] = useState([])
 
   useEffect(() => {
-    fetch('https://cors-anywhere.herokuapp.com/https://npropendata.rdw.nl//parkingdata/v2')
-      .then(res => res.json())
+    fetchData('https://npropendata.rdw.nl//parkingdata/v2')
       .then(
-        (result) => {
+        (data) => {
           setLoaded(true)
-          setGarages(result)
+          setGarages(data)
         },
-        (error) => {
+        (err) => {
           setLoaded(true)
-          setError(error)
+          setError(err)
         }
       )
   }, [])
