@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Garages({ garages, setSidebarState }) {
   const updateSelectedGarage = (garage) => (e) => {
     setSidebarState(garage)

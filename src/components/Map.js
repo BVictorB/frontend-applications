@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import Garages from '../molecules/Garages'
-import Sidebar from '../molecules/Sidebar'
+import { useState, useEffect } from 'react'
+import Garages from './Garages'
+import Sidebar from './Sidebar'
 
 function Map() {
   const [error, setError] = useState(null)
@@ -9,7 +9,7 @@ function Map() {
   const [sidebarState, setSidebarState] = useState([])
 
   useEffect(() => {
-    fetch('https://npropendata.rdw.nl//parkingdata/v2')
+    fetch('https://cors-anywhere.herokuapp.com/https://npropendata.rdw.nl//parkingdata/v2')
       .then(res => res.json())
       .then(
         (result) => {
