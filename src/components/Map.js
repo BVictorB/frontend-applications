@@ -10,7 +10,7 @@ function Map() {
   const [sidebarState, setSidebarState] = useState([])
 
   useEffect(() => {
-    fetchData('https://npropendata.rdw.nl//parkingdata/v2')
+    fetchData('https://npropendata.rdw.nl//parkingdata/v2', true)
       .then(
         (data) => {
           setLoaded(true)

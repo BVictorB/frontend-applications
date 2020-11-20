@@ -9,7 +9,7 @@ function Garages({ garages, setSidebarState }) {
           return null
         } 
         return (
-          <div key={garage.identifier}>
+          <div className="garages" key={garage.identifier}>
             <button onClick={updateSelectedGarage(garage)}>{garage.name}</button>
           </div>
         )
