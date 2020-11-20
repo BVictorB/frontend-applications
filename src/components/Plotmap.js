@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import { json, geoMercator, geoPath } from 'd3'
+import { useState, useEffect, useRef } from 'react'
+import { json, geoMercator, geoPath, select, zoom } from 'd3'
 import formatDistricts from '../helper/formatDistricts'
 
-function Plotmap() {
+function Plotmap({ setSidebarState }) {
   const [geoStreets, setGeoStreets] = useState(null)
   const [geoDistricts, setGeoDistricts] = useState(null)
   const [geoGarages, setGeoGarages] = useState(null)
@@ -27,25 +27,44 @@ function Plotmap() {
     })
   }, [])
 
-  const projection = geoMercator().scale(200000).center([4.895168,52.370216])
+  const projection = geoMercator().scale(300000).center([4.895168,52.370216])
   const pathGenerator = geoPath().projection(projection)
+
+  const garageSidebar = (garageData) => (e) => {
+    setSidebarState(garageData)
+  }
+  const inputEl = useRef(null)
+  const svgStreets = useRef(null)
+  const svgDistricts = useRef(null)
+  const svgGarages = useRef(null)
+
+  const svg = select(inputEl.current)
+  const streets = select(svgStreets.current)
+  const districts = select(svgDistricts.current)
+  const garages = select(svgGarages.current)
+
+  svg.call(zoom().on('zoom', (e) => {
+    streets.attr('transform', e.transform)
+    districts.attr('transform', e.transform)
+    garages.attr('transform', e.transform)
+  }))
 
   if (geoStreets && geoGarages) {
     return (
-      <svg width="100%" height="100%">
-        <g className="streets">
+      <svg ref={inputEl} width="100%" height="100%">
+        <g className="streets" ref={svgStreets}>
           {geoStreets.map((geoStreet, index) => (
-            <path key={index} fill="none" stroke="black" className="street" d={pathGenerator(geoStreet)} />
+            <path key={index} className="street" d={pathGenerator(geoStreet)} />
           ))}
         </g>
-        <g className="distritcs">
+        <g className="distritcs" ref={svgDistricts}>
           {geoDistricts.map((geoDistrict, index) => (
-            <path key={index} fill="none" stroke="hotpink" className="district" d={pathGenerator(geoDistrict)} />
+            <path key={index} className="district" d={pathGenerator(geoDistrict)} />
           ))}
         </g>
-        <g className="garagesTemp">
+        <g className="garages" ref={svgGarages}>
           {geoGarages.features.map((geoGarage, index) => (
-            <circle key={index} fill="hotpink" className="garage" r="5" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
+            <circle onClick={garageSidebar(geoGarage.properties)} key={index} className="garage" r="10" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
           ))}
         </g>
       </svg>
