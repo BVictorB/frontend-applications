@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Sidebar from './components/Sidebar'
 import Plotmap from './components/Plotmap'
 import Loading from './components/Loading'
-import FetchData from './components/FetchData'
+import fetchData from './helper/fetchData'
 
 function App() {
   const [sidebarState, setSidebarState] = useState({ garage: {}, area: {} })
@@ -13,12 +13,15 @@ function App() {
   const [geoAreas, setGeoAreas] = useState(null)
   const [geoGarages, setGeoGarages] = useState(null)
 
+  useEffect(() => {
+    fetchData(setLoaded, setGeoStreets, setGeoAreas, setGeoGarages)
+  }, [])
+
   return (
     <>
       <Loading loaded={loaded}/>
       <Sidebar sidebarState={sidebarState}/>
       <Plotmap setSidebarState={setSidebarState} geoAreas={geoAreas} geoGarages={geoGarages} geoStreets={geoStreets}/>
-      <FetchData setLoaded={setLoaded} setGeoAreas={setGeoAreas} setGeoGarages={setGeoGarages} setGeoStreets={setGeoStreets}/>
     </>
   )
 }
