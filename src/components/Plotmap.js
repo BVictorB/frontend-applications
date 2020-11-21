@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { json, geoMercator, geoPath, select, zoom } from 'd3'
 import formatDistricts from '../helper/formatDistricts'
 
-function Plotmap({ setSidebarState }) {
+function Plotmap({ setSidebarState, setLoaded }) {
   const [geoStreets, setGeoStreets] = useState(null)
   const [geoDistricts, setGeoDistricts] = useState(null)
   const [geoGarages, setGeoGarages] = useState(null)
@@ -15,6 +15,7 @@ function Plotmap({ setSidebarState }) {
     json(streetData).then(data => {
       const streets = data.features.filter(e => e.geometry && e.geometry.type !== 'Point' && e.geometry.type !== 'LineString')
       setGeoStreets(streets)
+      setLoaded(true)
     })
 
     json(districtData).then(data => {

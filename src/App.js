@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Plotmap from './components/Plotmap'
-import { useState } from 'react'
+import Loading from './components/Loading'
 
 function App() {
   const [sidebarState, setSidebarState] = useState(null)
@@ -9,8 +10,9 @@ function App() {
 
   return (
     <>
+      <Loading loaded={loaded}/>
       <Sidebar sidebarState={sidebarState}/>
-      <Plotmap setSidebarState={setSidebarState}/>
+      <Plotmap setSidebarState={setSidebarState} setLoaded={setLoaded}/>
     </>
   )
 }
