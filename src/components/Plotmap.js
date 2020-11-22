@@ -3,7 +3,7 @@ import { select, zoom } from 'd3'
 import { projection, pathGenerator } from '../helper/d3Variables'
 import { garageSidebar, areaSidebar } from '../helper/updateSidebar'
 
-function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets }) {
+function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages }) {
   const svgEl = useRef(null)
   const svgStreets = useRef(null)
   const svgAreas = useRef(null)
@@ -20,6 +20,14 @@ function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets }) {
     garages.attr('transform', e.transform)
   }))
 
+  let geoGaragePlot
+
+  if (filteredGeoGarages) {
+    geoGaragePlot = filteredGeoGarages
+  } else {
+    geoGaragePlot = geoGarages
+  }
+
   if (geoStreets && geoGarages) {
     return (
       <svg ref={svgEl} width="100%" height="100%">
@@ -34,7 +42,7 @@ function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets }) {
           ))}
         </g>
         <g className="garages" ref={svgGarages}>
-          {geoGarages.features.map((geoGarage, index) => (
+          {geoGaragePlot.map((geoGarage, index) => (
             <circle onClick={garageSidebar(geoGarage.properties, setSidebarState)} key={index} className="garage" r="10" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
           ))}
         </g>

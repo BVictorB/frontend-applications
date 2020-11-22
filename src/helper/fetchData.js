@@ -16,7 +16,7 @@ const fetchData = (setLoaded, setGeoStreets, setGeoAreas, setGeoGarages) => {
   })
 
   json(garageData).then(data => {
-    setGeoGarages(data)
+    setGeoGarages(data.features)
   })
 }
 

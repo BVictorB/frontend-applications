@@ -12,6 +12,7 @@ function App() {
   const [geoStreets, setGeoStreets] = useState(null)
   const [geoAreas, setGeoAreas] = useState(null)
   const [geoGarages, setGeoGarages] = useState(null)
+  const [filteredGeoGarages, setFilteredGeoGarages] = useState(null)
 
   useEffect(() => {
     fetchData(setLoaded, setGeoStreets, setGeoAreas, setGeoGarages)
@@ -20,8 +21,8 @@ function App() {
   return (
     <>
       <Loading loaded={loaded}/>
-      <Sidebar sidebarState={sidebarState}/>
-      <Plotmap setSidebarState={setSidebarState} geoAreas={geoAreas} geoGarages={geoGarages} geoStreets={geoStreets}/>
+      <Sidebar sidebarState={sidebarState} geoGarages={geoGarages} setFilteredGeoGarages={setFilteredGeoGarages}/>
+      <Plotmap setSidebarState={setSidebarState} geoAreas={geoAreas} geoGarages={geoGarages} geoStreets={geoStreets} filteredGeoGarages={filteredGeoGarages}/>
     </>
   )
 }

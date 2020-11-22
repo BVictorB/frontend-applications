@@ -15,3 +15,7 @@ export const formatAreas = (data) => {
 export const formatStreets = (data) => {
   return data.filter(e => e.geometry && e.geometry.type !== 'Point' && e.geometry.type !== 'LineString')
 }
+
+export const convertUnixStampToYear = (unix) => {
+  return (new Date(unix * 1000)).getFullYear()
+}
