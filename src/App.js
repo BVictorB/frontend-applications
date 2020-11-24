@@ -7,13 +7,19 @@ import checkLocalStorage from './helper/checkLocalStorage'
 
 function App() {
   const 
-    [sidebarState, setSidebarState] = useState({ garage: {}, area: {} }),
+    [sidebarState, setSidebarState] = useState(checkLocalStorage('sidebarState', { garage: {}, area: {} })),
     [error, setError] = useState(null),
     [loaded, setLoaded] = useState(false),
     [geoStreets, setGeoStreets] = useState(checkLocalStorage('geoStreets')),
     [geoAreas, setGeoAreas] = useState(checkLocalStorage('geoAreas')),
     [geoGarages, setGeoGarages] = useState(checkLocalStorage('geoGarages')),
     [filteredGeoGarages, setFilteredGeoGarages] = useState(checkLocalStorage('filteredGeoGarages'))
+
+
+  // Make this cleaner!!
+  useEffect(() => {
+    localStorage.setItem('sidebarState', JSON.stringify(sidebarState))
+  }, [sidebarState])
 
   useEffect(() => {
     localStorage.setItem('filteredGeoGarages', JSON.stringify(filteredGeoGarages))
@@ -22,6 +28,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem('geoStreets', JSON.stringify(geoStreets))
   }, [geoStreets])
+
+  useEffect(() => {
+    localStorage.setItem('geoAreas', JSON.stringify(geoAreas))
+  }, [geoAreas])
 
   useEffect(() => {
     localStorage.setItem('geoGarages', JSON.stringify(geoGarages))

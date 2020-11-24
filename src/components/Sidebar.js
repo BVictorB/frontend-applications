@@ -1,12 +1,12 @@
-import { convertUnixStampToYear } from '../helper/formatData'
+import { convertUnixStampToYear, roundToOneDecimal, createYearButtons } from '../helper/formatData'
 
 function Sidebar({ sidebarState, geoGarages, setFilteredGeoGarages }) {
-  const buttonFunc = (event) => {
+  const setFilter = (event) => {
     const filteredPointData = geoGarages.filter(e => e.properties && convertUnixStampToYear(e.properties.openDate) === Number(event.target.value))
     setFilteredGeoGarages(filteredPointData)
   }
 
-  const resetFunc = () => {
+  const resetFilter = () => {
     setFilteredGeoGarages(null)
   }
 
@@ -15,13 +15,12 @@ function Sidebar({ sidebarState, geoGarages, setFilteredGeoGarages }) {
       <h1>{sidebarState.garage.name}</h1>
       <p>Year of opening: {convertUnixStampToYear(sidebarState.garage.openDate)}</p>
       <p>Capacity: {sidebarState.garage.capacity}</p>
+      <p>Price: {sidebarState.garage.tariff ? `€${roundToOneDecimal(sidebarState.garage.tariff * 60)}` : 'no price data'}</p>
       <h2>...</h2>
       <p>Area: {sidebarState.area.description ? sidebarState.area.description[0] : null}</p>
-      <button onClick={buttonFunc} value="2013" >2013</button>
-      <button onClick={buttonFunc} value="2014" >2014</button>
-      <button onClick={buttonFunc} value="2015" >2015</button>
-      <button onClick={buttonFunc} value="2016" >2016</button>
-      <button onClick={resetFunc}>Reset</button>
+      <p>Price: {sidebarState.area.tariffs ? `€${Object.keys(sidebarState.area.tariffs[0])[0]}` : 'no price data'}</p>
+      {createYearButtons(geoGarages, setFilter)}
+      <button onClick={resetFilter}>Reset</button>
     </div>
   )
 }

@@ -1,11 +1,11 @@
-export const garageSidebar = (garageData, setSidebarState) => (e) => {
+export const garageSidebar = (garageData, setSidebarState) => {
   setSidebarState(prevState => {
-    return { ...prevState, garage: garageData }
+    return { ...prevState, garage: garageData.properties }
   })
 }
 
-export const areaSidebar = (areaData, setSidebarState) => (e) => {
+export const areaSidebar = (areaData, setSidebarState) => {
   setSidebarState(prevState => {
-    return { ...prevState, area: areaData }
+    return { ...prevState, area: areaData.properties }
   })
 }
