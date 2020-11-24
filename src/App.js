@@ -7,16 +7,15 @@ import checkLocalStorage from './helper/checkLocalStorage'
 
 function App() {
   const 
-    [sidebarState, setSidebarState] = useState(checkLocalStorage('sidebarState', { garage: {}, area: {} })),
-    [error, setError] = useState(null),
+    [sidebarState, setSidebarState] = useState(checkLocalStorage('sidebarState', { garage: {}, area: {}, areaElement: null })),
     [loaded, setLoaded] = useState(false),
     [geoStreets, setGeoStreets] = useState(checkLocalStorage('geoStreets')),
     [geoAreas, setGeoAreas] = useState(checkLocalStorage('geoAreas')),
     [geoGarages, setGeoGarages] = useState(checkLocalStorage('geoGarages')),
-    [filteredGeoGarages, setFilteredGeoGarages] = useState(checkLocalStorage('filteredGeoGarages'))
-
-
-  // Make this cleaner!!
+    [filteredGeoGarages, setFilteredGeoGarages] = useState(checkLocalStorage('filteredGeoGarages')),
+    [selectedGarages, setSelectedGarages] = useState(checkLocalStorage('selectedGarages'))
+  
+    // Make this cleaner!!
   useEffect(() => {
     localStorage.setItem('sidebarState', JSON.stringify(sidebarState))
   }, [sidebarState])
@@ -42,6 +41,10 @@ function App() {
   }, [filteredGeoGarages])
 
   useEffect(() => {
+    localStorage.setItem('selectedGarages', JSON.stringify(selectedGarages))
+  }, [selectedGarages])
+
+  useEffect(() => {
     fetchData(setLoaded, setGeoStreets, setGeoAreas, setGeoGarages, geoStreets, geoAreas, geoGarages)
     setLoaded(true)
   }, [])
@@ -49,8 +52,8 @@ function App() {
   return (
     <>
       <Loading loaded={loaded}/>
-      <Sidebar sidebarState={sidebarState} geoGarages={geoGarages} setFilteredGeoGarages={setFilteredGeoGarages}/>
-      <Plotmap setSidebarState={setSidebarState} geoAreas={geoAreas} geoGarages={geoGarages} geoStreets={geoStreets} filteredGeoGarages={filteredGeoGarages} setLoaded={setLoaded}/>
+      <Sidebar sidebarState={sidebarState} geoGarages={geoGarages} setFilteredGeoGarages={setFilteredGeoGarages} selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages}/>
+      <Plotmap setSidebarState={setSidebarState} geoAreas={geoAreas} geoGarages={geoGarages} geoStreets={geoStreets} filteredGeoGarages={filteredGeoGarages} setSelectedGarages={setSelectedGarages}/>
     </>
   )
 }

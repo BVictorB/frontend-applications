@@ -1,9 +1,9 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { select, zoom } from 'd3'
 import { projection, pathGenerator } from '../helper/d3Variables'
 import { garageSidebar, areaSidebar } from '../helper/updateSidebar'
 
-function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages, setLoaded }) {
+function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages, setSelectedGarages }) {
   const 
     svgEl = useRef(null),
     svgGroup = useRef(null),
@@ -11,34 +11,10 @@ function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGe
     group = select(svgGroup.current)
 
   svg.call(zoom().on('zoom', (e) => {
-    changeZoom(e.transform)
+    group.attr('transform', e.transform)
   }))
 
-  const changeZoom = (zoomSettings) => {
-    group.attr('transform', zoomSettings)
-  }
-
-  const selectArea = (geoArea) => {
-    const areaCentroid = pathGenerator.centroid(geoArea)
-    // const zoomSettings = {
-    //   'Transform': {
-    //     'k': 2,
-    //     'x': areaCentroid[0],
-    //     'y': areaCentroid[1]
-    //   }
-    // }
-    // console.dir(zoomSettings)
-    // // changeZoom(zoomSettings)
-  }
-
-  // console.log(selectedArea)
-
-  // if (selectedArea) {
-  //   group.attr('transform', `scale(3)translate(-${selectedArea[0]},-${selectedArea[1]})`)
-  // }
-
-
-  let geoGaragePlot = geoGarages
+  let geoGaragePlot
 
   filteredGeoGarages ? geoGaragePlot = filteredGeoGarages : geoGaragePlot = geoGarages
 
@@ -53,12 +29,12 @@ function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGe
           </g>
           <g className="areas">
             {geoAreas.map((geoArea, index) => (
-              <path onClick={() => { selectArea(geoArea); areaSidebar(geoArea, setSidebarState) }} key={index} className="area" d={pathGenerator(geoArea)} />
+              <path onClick={(e) => areaSidebar(geoArea, setSidebarState, e)} key={index} className="area" d={pathGenerator(geoArea)} />
             ))}
           </g>
           <g className="garages">
             {geoGaragePlot.map((geoGarage, index) => (
-              <circle onClick={() => garageSidebar(geoGarage, setSidebarState)} key={index} className="garage" r="10" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
+              <circle onClick={() => garageSidebar(geoGarage, setSidebarState, setSelectedGarages, index)} key={index} className="garage" r="6" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
             ))}
           </g>
         </g>

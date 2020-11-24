@@ -89,3 +89,7 @@ code {
       transform: rotate(360deg);
   }
 }
+
+.selected { 
+  fill: #f25c5490;
+}
