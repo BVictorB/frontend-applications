@@ -1,23 +1,24 @@
 import { removeSelectedGarage } from '../../../helper/formatData'
 import { scaleBand, scaleLinear, max } from 'd3';
 
-const Barchart = ({ selectedGarages, setSelectedGarages }) => {
-  const width = 400;
-  const height = 300;
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier}) => {
+  const width = 400
+  const height = 300
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 }
 
-  const innerHeight = height - margin.top - margin.bottom;
-  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom
+  const innerWidth = width - margin.left - margin.right
 
   const yScale = scaleBand()
     .domain(selectedGarages.map(d => d.properties.name))
-    .range([0, 250]);
+    .range([0, 250])
 
   const xScale = scaleLinear()
-    .domain([0, max(selectedGarages, d => d.properties.tariff * 60)])
-    .range([0, innerWidth]);
+    .domain([0, max(selectedGarages, d => d.properties[chartKey] * multiplier)])
+    .range([0, innerWidth])
 
   return (
+    <>
       <svg className="m-barchart" width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           {xScale.ticks().map(tickValue => (
@@ -39,13 +40,14 @@ const Barchart = ({ selectedGarages, setSelectedGarages }) => {
               key={index}
               x={0}
               y={yScale(d.properties.name)}
-              width={xScale(d.properties.tariff * 60)}
+              width={xScale(d.properties[chartKey] * multiplier)}
               height={yScale.bandwidth()}
               onClick={removeSelectedGarage(d, setSelectedGarages, selectedGarages)}
             />
           ))}
         </g>
       </svg>
+    </>
   )
 }
 
