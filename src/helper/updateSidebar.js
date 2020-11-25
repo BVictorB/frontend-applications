@@ -4,10 +4,12 @@ export const garageSidebar = (garageData, setSidebarState, setSelectedGarages, i
   })
 
   setSelectedGarages(prevState => {
-    return { ...prevState, [index]: garageData.properties }
+    if (prevState.length <= 3) {
+      return [ ...prevState, { ...garageData, index: index } ]
+    } else {
+      return prevState
+    }
   })
-
-  // setSelectedGarages('test')
 }
 
 export const areaSidebar = (areaData, setSidebarState, e) => {

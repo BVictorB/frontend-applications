@@ -34,3 +34,21 @@ export const convertUnixStampToYear = (unix) => {
 export const roundToOneDecimal = (number) => {
   return Math.round(number * 10) / 10
 }
+
+export const calculateDifference = (firstPrice, secondPrice) => {
+  const difference = roundToOneDecimal(firstPrice - secondPrice)
+  if (isNaN(difference)) return null
+  let message
+  difference > 0 ? message = 'cheaper' : message = 'more expensive'
+  return `${Math.abs(difference)} ${message}`
+}
+
+export const resetSelectedGarages = (setSelectedGarages) => () => {
+  setSelectedGarages([])
+}
+
+export const removeSelectedGarage = (garage, setSelectedGarages, selectedGarages) => () => {
+  setSelectedGarages(selectedGarages.filter((garages) => {
+    return garages.index !== garage.index
+  }))
+}

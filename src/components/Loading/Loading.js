@@ -1,4 +1,4 @@
-function Loading({ loaded }) {
+const Loading = ({ loaded }) => {
   if (!loaded) {
     return (
       <div className="m-loading">

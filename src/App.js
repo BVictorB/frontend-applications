@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import Sidebar from './components/Sidebar'
-import Plotmap from './components/Plotmap'
-import Loading from './components/Loading'
+import Sidebar from './components/Sidebar/Sidebar'
+import Plotmap from './components/Plotmap/Plotmap'
+import Loading from './components/Loading/Loading'
 import fetchData from './helper/fetchData'
 import checkLocalStorage from './helper/checkLocalStorage'
 
@@ -13,7 +13,7 @@ function App() {
     [geoAreas, setGeoAreas] = useState(checkLocalStorage('geoAreas')),
     [geoGarages, setGeoGarages] = useState(checkLocalStorage('geoGarages')),
     [filteredGeoGarages, setFilteredGeoGarages] = useState(checkLocalStorage('filteredGeoGarages')),
-    [selectedGarages, setSelectedGarages] = useState(checkLocalStorage('selectedGarages'))
+    [selectedGarages, setSelectedGarages] = useState(checkLocalStorage('selectedGarages', []))
   
     // Make this cleaner!!
   useEffect(() => {

@@ -27,6 +27,7 @@ code {
   background-color: #f25c54;
   color: white;
   padding: 0 20px;
+  overflow-y: scroll;
 }
 
 .garage {
@@ -92,4 +93,10 @@ code {
 
 .selected { 
   fill: #f25c5490;
+}
+
+.bar {
+  fill: #f25c54;
+  stroke: white;
+  height: 50px;
 }

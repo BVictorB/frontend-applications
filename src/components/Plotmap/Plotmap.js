@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { select, zoom } from 'd3'
-import { projection, pathGenerator } from '../helper/d3Variables'
-import { garageSidebar, areaSidebar } from '../helper/updateSidebar'
+import { projection, pathGenerator } from '../../helper/d3Variables'
+import { garageSidebar, areaSidebar } from '../../helper/updateSidebar'
 
-function Plotmap({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages, setSelectedGarages }) {
+const Plotmap = ({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages, setSelectedGarages }) => {
   const 
     svgEl = useRef(null),
     svgGroup = useRef(null),
