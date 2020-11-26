@@ -12,7 +12,7 @@ const FilterGarages = ({ setFilteredGeoGarages, geoGarages }) => {
   return (
     <div>
       {geoGarages ? createYearButtons(geoGarages, setFilter) : null}
-      <button onClick={resetFilter}>Reset</button>
+      <button className="reset-button" onClick={resetFilter}>Reset</button>
     </div>
   )
 }

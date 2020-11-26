@@ -1,0 +1,63 @@
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 400px;
+  background-color: #0f181c;
+  color: #FEFFFF;
+  padding: 0 20px;
+  overflow-y: auto;
+}
+
+.sidebar-container {
+  margin-top: 20px;
+  background-color: #17252A;
+  padding: 1px 25px 15px;
+  border-radius: 20px;
+}
+
+.sidebar-container h2:nth-of-type(2) {
+  border-top: 1px solid #FEFFFF;
+  padding-top: 15px;
+}
+
+.sidebar-filter {
+  margin: 20px 0;
+  background-color: #17252A;
+  padding: 15px 20px;
+  border-radius: 20px;
+}
+
+.sidebar-garage h2 {
+  padding-top: 20px;
+}
+
+.bar {
+  transform: translateY(10px);
+  fill: #3AAFA9;
+  stroke: #FEFFFF;
+  height: 50px;
+}
+
+.filter-button {
+  width: 47%;
+}
+
+.reset-button {
+  width: 97%;
+}
+
+.sidebar-pricedif {
+  border-top: 1px solid #FEFFFF;
+  padding-top: 15px;
+}
+
+.bar-title {
+  font-size: 10px;
+  transform: translate(5px, 40px);
+}
+
+.m-barchart {
+  margin-bottom: 50px;
+}

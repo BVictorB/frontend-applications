@@ -1,0 +1,25 @@
+.garage {
+  fill: #3AAFA9;
+}
+
+.garage:hover {
+  fill: #2B7A78;
+  cursor: pointer;
+}
+
+.area {
+  fill: transparent;
+  stroke: #3AAFA9;
+  stroke-width: .5;
+}
+
+.street {
+  pointer-events: none;
+  fill: none;
+  stroke: #7d8597;
+  stroke-width: .3;
+}
+
+.selected { 
+  fill: #3aafa943;
+}

@@ -1,3 +1,4 @@
+import './plotmap.css'
 import { useRef } from 'react'
 import { select, zoom } from 'd3'
 import { projection, pathGenerator } from '../../helper/d3Variables'

@@ -23,7 +23,7 @@ export const createYearButtons = (geoGarages, setFilter) => {
   })
   
   return allYears.map((year, index) => {
-    return <button onClick={setFilter} key={index} value={year}>{year}</button>
+    return <button className="filter-button" onClick={setFilter} key={index} value={year}>{year}</button>
   })
 }
 

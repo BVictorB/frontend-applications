@@ -1,0 +1,18 @@
+h1 {
+  margin: 0;
+  color: #FEFFFF;
+  text-align: center;
+}
+
+p {
+  color: #FEFFFF;
+}
+
+.intro-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.intro-button {
+  width: 100%;
+}

@@ -1,7 +1,7 @@
 import { removeSelectedGarage } from '../../../helper/formatData'
 import { scaleBand, scaleLinear, max } from 'd3';
 
-const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier}) => {
+const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier, chartName}) => {
   const width = 400
   const height = 300
   const margin = { top: 20, right: 20, bottom: 20, left: 20 }
@@ -19,9 +19,9 @@ const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier}) 
 
   return (
     <>
-      <h2>{chartKey}</h2>
+      <h2>{chartName}</h2>
       <svg className="m-barchart" width={width} height={height}>
-        <g transform={`translate(${margin.left},${margin.top})`}>
+        <g className="chart" transform={`translate(${margin.left},${margin.top})`}>
           {xScale.ticks().map(tickValue => (
             <g key={tickValue} transform={`translate(${xScale(tickValue)},0)`}>
               <line y2={innerHeight} stroke='white' />
@@ -36,15 +36,12 @@ const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier}) 
             </g>
           ))}
           {selectedGarages.map((d, index) => (
-            <rect
-              className="bar"
-              key={index}
-              x={0}
-              y={yScale(d.properties.name)}
-              width={xScale(d.properties[chartKey] * multiplier)}
-              height={yScale.bandwidth()}
-              onClick={removeSelectedGarage(d, setSelectedGarages, selectedGarages)}
-            />
+            <>
+              <rect className="bar" key={index} y={yScale(d.properties.name)} width={xScale(d.properties[chartKey] * multiplier)} onClick={removeSelectedGarage(d, setSelectedGarages, selectedGarages)}/>
+              <svg width={xScale(d.properties[chartKey] * multiplier)}>
+                <text y={yScale(d.properties.name)} className="bar-title">{d.properties.name}</text>
+              </svg>
+            </>
           ))}
         </g>
       </svg>
