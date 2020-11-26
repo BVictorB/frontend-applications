@@ -1,20 +1,20 @@
 import './sidebar.css'
-import { convertUnixStampToYear, roundToOneDecimal, calculateDifference } from '../../helper/formatData'
-import CompareGarages from './modules/CompareGarages'
-import FilterGarages from './modules/FilterGarages'
+import { convertUnixStampToYear, roundToOneDecimal, calculateDifference, resetSelectedGarages } from '../../helper/formatData'
+import FilterGarages from '../FilterGarages/FilterGarages'
+import Barchart from '../Barchart/Barchart'
 
 const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGarages, setSelectedGarages}) => {
-  // const findPaymentMethods = () => {
-  //   const paymentMethods = sidebarState.garage.payment
-  //   console.log(paymentMethods)
-  //   return paymentMethods.map((method, index) => {
-  //     return <img src={method.toLowerCase()} key={index} alt=""/>
-  //   })
-  // }
-
   const garagePrice = sidebarState.garage.tariff ? roundToOneDecimal(sidebarState.garage.tariff * 60) : 'no price data'
   const areaPrice = sidebarState.area.tariffs ? Number(Object.keys(sidebarState.area.tariffs[0])[0].replace(/,/g, '.')) : 'no price data'
 
+  // const findPaymentMethods = () => {
+  //   const paymentMethods = sidebarState.garage.payment
+  //   return paymentMethods.map((method, index) => {
+  //     return method
+  //   })
+  // }
+
+  // console.log(findPaymentMethods())
 
   const checkIfGarageIsSelected = () => {
     if (sidebarState.garage.name) {
@@ -54,7 +54,9 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
     if (selectedGarages[0]) {
       return (
         <div className="sidebar-compare">
-          <CompareGarages selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages}/>
+          <button onClick={resetSelectedGarages(setSelectedGarages)}>Clear all selected garages</button>
+          <Barchart selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages} chartKey={'tariff'} multiplier={60} chartName={'Prices'}/>
+          <Barchart selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages} chartKey={'capacity'} multiplier={1} chartName={'Capacity'}/>
         </div>
       ) 
     } else {
@@ -64,7 +66,6 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
 
   return (
     <div className="sidebar">
-      {/* {findPaymentMethods()} */}
       <div className="sidebar-container">
         {checkIfGarageIsSelected()}
         {checkIfAreaIsSelected()}

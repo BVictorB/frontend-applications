@@ -1,4 +1,4 @@
-import { removeSelectedGarage } from '../../../helper/formatData'
+import { removeSelectedGarage } from '../../helper/formatData'
 import { scaleBand, scaleLinear, max } from 'd3';
 
 const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier, chartName}) => {

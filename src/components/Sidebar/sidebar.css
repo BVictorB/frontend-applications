@@ -56,6 +56,7 @@
 .bar-title {
   font-size: 10px;
   transform: translate(5px, 40px);
+  pointer-events: none;
 }
 
 .m-barchart {
