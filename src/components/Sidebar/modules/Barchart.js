@@ -19,6 +19,7 @@ const Barchart = ({ selectedGarages, setSelectedGarages, chartKey, multiplier}) 
 
   return (
     <>
+      <h2>{chartKey}</h2>
       <svg className="m-barchart" width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           {xScale.ticks().map(tickValue => (

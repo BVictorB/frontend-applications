@@ -12,9 +12,7 @@ const CompareGarages = ({ selectedGarages, setSelectedGarages }) => {
           <button onClick={removeSelectedGarage(garage, setSelectedGarages, selectedGarages)}>Remove</button>
         </div>
       )) : null} */}
-      <h2>Price</h2>
       <Barchart selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages} chartKey={'tariff'} multiplier={60}/>
-      <h2>Capacity</h2>
       <Barchart selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages} chartKey={'capacity'} multiplier={1}/>
     </div>
   )
