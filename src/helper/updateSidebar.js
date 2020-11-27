@@ -1,6 +1,6 @@
-export const garageSidebar = (garageData, setSidebarState) => {
+export const garageSidebar = (garageData, setSidebarState, index) => {
   setSidebarState(prevState => {
-    return { ...prevState, garage: garageData.properties }
+    return { ...prevState, garage: garageData.properties, index: index }
   })
 }
 

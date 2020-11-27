@@ -35,7 +35,7 @@ const Plotmap = ({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGe
           </g>
           <g className="garages">
             {geoGaragePlot.map((geoGarage, index) => (
-              <circle onClick={() => garageSidebar(geoGarage, setSidebarState)} key={index} className="garage" r="6" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
+              <circle onClick={() => garageSidebar(geoGarage, setSidebarState, index)} key={index} className="garage" r="6" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
             ))}
           </g>
         </g>
