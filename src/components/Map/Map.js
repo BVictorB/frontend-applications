@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import Sidebar from '../Sidebar/Sidebar'
-import Plotmap from '../Plotmap/Plotmap'
+import Sidebar from './Sidebar/Sidebar'
+import Plotmap from './Plotmap/Plotmap'
 import Loading from '../Loading/Loading'
 import fetchData from '../../helper/fetchData'
 import checkLocalStorage from '../../helper/checkLocalStorage'
 
 const Map = () => {
   const 
-    [sidebarState, setSidebarState] = useState(checkLocalStorage('sidebarState', { garage: {}, area: {}, areaElement: null })),
+    [sidebarState, setSidebarState] = useState(checkLocalStorage('sidebarState', { garage: {}, area: {} })),
     [loaded, setLoaded] = useState(false),
     [geoStreets, setGeoStreets] = useState(checkLocalStorage('geoStreets')),
     [geoAreas, setGeoAreas] = useState(checkLocalStorage('geoAreas')),

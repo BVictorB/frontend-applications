@@ -1,4 +1,5 @@
-import { convertUnixStampToYear, createYearButtons } from '../../helper/formatData'
+import { convertUnixStampToYear } from '../../../../helper/formatData'
+import createYearButtons from '../../../../helper/createYearButtons'
 
 const FilterGarages = ({ setFilteredGeoGarages, geoGarages }) => {
   const setFilter = (event) => {

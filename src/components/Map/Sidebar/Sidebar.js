@@ -1,20 +1,12 @@
 import './sidebar.css'
-import { convertUnixStampToYear, roundToOneDecimal, calculateDifference, resetSelectedGarages } from '../../helper/formatData'
-import FilterGarages from '../FilterGarages/FilterGarages'
-import Barchart from '../Barchart/Barchart'
+import { convertUnixStampToYear, roundToOneDecimal, calculateDifference, getPaymentMethods } from '../../../helper/formatData'
+import { resetSelectedGarages, addSelectedGarage } from '../../../helper/selectedGarage'
+import FilterGarages from './FilterGarages/FilterGarages'
+import Barchart from './Barchart/Barchart'
 
 const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGarages, setSelectedGarages}) => {
   const garagePrice = sidebarState.garage.tariff ? roundToOneDecimal(sidebarState.garage.tariff * 60) : 'no price data'
   const areaPrice = sidebarState.area.tariffs ? Number(Object.keys(sidebarState.area.tariffs[0])[0].replace(/,/g, '.')) : 'no price data'
-
-  // const findPaymentMethods = () => {
-  //   const paymentMethods = sidebarState.garage.payment
-  //   return paymentMethods.map((method, index) => {
-  //     return method
-  //   })
-  // }
-
-  // console.log(findPaymentMethods())
 
   const checkIfGarageIsSelected = () => {
     if (sidebarState.garage.name) {
@@ -25,6 +17,7 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
           <p>Year of opening: {convertUnixStampToYear(sidebarState.garage.openDate)}</p>
           <p>Capacity: {sidebarState.garage.capacity}</p>
           <p>Price: {typeof garagePrice === 'string' ? garagePrice : `€${garagePrice}`}</p>
+          <p className="payment-methods">Payment methods: {getPaymentMethods(sidebarState)}</p>
         </>
       )
     } else {
@@ -40,7 +33,7 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
         <>
           <h2>Area:</h2>
           <p>{sidebarState.area.description ? sidebarState.area.description[0] : null}</p>
-          <p>Price: {areaPrice}</p>
+          <p>Price: €{areaPrice}</p>
         </>
       )
     } else {
@@ -54,13 +47,18 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
     if (selectedGarages[0]) {
       return (
         <div className="sidebar-compare">
+          <button onClick={() => addSelectedGarage(setSelectedGarages, sidebarState.garage, sidebarState.index)}>Compare selected garage</button>
           <button onClick={resetSelectedGarages(setSelectedGarages)}>Clear all selected garages</button>
           <Barchart selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages} chartKey={'tariff'} multiplier={60} chartName={'Prices'}/>
           <Barchart selectedGarages={selectedGarages} setSelectedGarages={setSelectedGarages} chartKey={'capacity'} multiplier={1} chartName={'Capacity'}/>
         </div>
       ) 
     } else {
-      return null
+      return (
+        <div className="sidebar-compare">
+          <button onClick={() => addSelectedGarage(setSelectedGarages, sidebarState.garage, sidebarState.index)}>Compare selected garage</button>
+        </div>
+      )
     }
   }
 

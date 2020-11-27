@@ -1,10 +1,10 @@
 import './plotmap.css'
 import { useRef } from 'react'
 import { select, zoom } from 'd3'
-import { projection, pathGenerator } from '../../helper/d3Variables'
-import { garageSidebar, areaSidebar } from '../../helper/updateSidebar'
+import { projection, pathGenerator } from '../../../helper/d3Variables'
+import { garageSidebar, areaSidebar } from '../../../helper/updateSidebar'
 
-const Plotmap = ({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages, setSelectedGarages }) => {
+const Plotmap = ({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGeoGarages }) => {
   const 
     svgEl = useRef(null),
     svgGroup = useRef(null),
@@ -35,7 +35,7 @@ const Plotmap = ({ setSidebarState, geoAreas, geoGarages, geoStreets, filteredGe
           </g>
           <g className="garages">
             {geoGaragePlot.map((geoGarage, index) => (
-              <circle onClick={() => garageSidebar(geoGarage, setSidebarState, setSelectedGarages, index)} key={index} className="garage" r="6" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
+              <circle onClick={() => garageSidebar(geoGarage, setSidebarState)} key={index} className="garage" r="6" cx={projection(geoGarage.geometry.coordinates)[0]} cy={projection(geoGarage.geometry.coordinates)[1]} />
             ))}
           </g>
         </g>
