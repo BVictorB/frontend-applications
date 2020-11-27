@@ -1,7 +1,5 @@
 # Frontend applications
-...
-![Thinking The Hangover gif](https://media1.tenor.com/images/d955eb63f22e146e4c6fabe4029d90f4/tenor.gif?itemid=10422478)  
-_(https://media1.tenor.com/images/d955eb63f22e146e4c6fabe4029d90f4/tenor.gif?itemid=10422478)_
+This is the last course of the three courses (functional programming, frontend data and frontend applications) for this project. In this course we started working with frontend frameworks (in my case React). I continued working on the data visualization but made everything work properly with states and everything in React. Working with React was new for me, but it did not take long to understand it. It made me very productive, and it was a lot easier to achieve the same results as before, but with less code. Read the [wiki](https://github.com/BVictorB/frontend-applications/wiki) for more information about how I used different features that React offers.
 ***
 ## Debriefing
 The newspaper 'De Volkskrant' wants to get interesting insights on connections in the RDW datasets. It is our job to find interesting information in the datasets, and make a data visualization about that information/subject. De Volkskrant can that see if they can use the information shown to write an interesting article.
@@ -11,18 +9,13 @@ Click [here](https://github.com/BVictorB/functional-programming/wiki/Research-da
 ![De Volkskrant](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Volkskrant.svg/1200px-Volkskrant.svg.png)  
 _(https://nl.wikipedia.org/wiki/Bestand:Volkskrant.svg)_
 ***
-## Assignments
-...
 ***
 ## Concept
-My idea for this project is to retrieve data from the [RDW datasets](https://opendata.rdw.nl/browse) and from the [datasets of the city of Amsterdam](https://data.amsterdam.nl/) to make an interactive map. I want to plot out different parking areas on the map, with the different prices that are being used. If I can get the data of the history of these parking prices, I want to be able to scroll through time and see how the prices have changed. I also want to plot all the parking garages in Amsterdam on the map, and see when they opened and compare this to the changes in parking prices. And if I have the data for it, I would also like to compare the prices of the parking garages to the prices of parking on the street (also going back in history).
+My idea for this project is to retrieve data from the [RDW datasets](https://opendata.rdw.nl/browse) and from the [datasets of the city of Amsterdam](https://data.amsterdam.nl/) to make an interactive map. I want to plot out different parking areas on the map, with the different prices that are being used. If I can get the data of the history of these parking prices, I want to be able to scroll through time and see how the prices have changed. I also want to plot all the parking garages in Amsterdam on the map, and see when they opened and compare this to the changes in parking prices. And if I have the data for it, I would also like to compare the prices of the parking garages to the prices of parking on the street (also going back in history)
 
-![Map with plotted points](https://user-images.githubusercontent.com/10921830/99064788-b23be280-25a6-11eb-82c2-e71524fab4df.png)
-_The map with the parking garages plotted on it._  
-
-![Map with plotted points](https://user-images.githubusercontent.com/10921830/99064781-aea85b80-25a6-11eb-8dd8-962816b8b8df.png)
-_The map with the sidebar next to it that is used for filtered and getting more information._
-
+Data Amsterdam did not have the data that I needed to accomplish the concept I had in mind. So I created a map where you can compare parking garages with each other and with parking areas in Amsterdam. 
+Click [here](https://github.com/BVictorB/frontend-applications/wiki/Final-result) to see the final product with some information or [here](https://bvictorb-garage.netlify.app/) for the live version.
+***
 ### Research question(s)
 I have created a few research questions to support my research. There is a main research question that I find most important in my assignment, I will mostly focus on this one. But I will also try to implement answering assets/features for the other research questions.
 ### **_Is there a connection between the increasing parking prices and the opening of new parking garages in Amsterdam?_**
@@ -39,15 +32,15 @@ _(https://tenor.com/view/meeting-bad-parking-car-break-glass-fail-gif-17599579)_
 ## Installing
 - Clone this repo
 ```
-git clone https://github.com/BVictorB/frontend-data.git .
+git clone https://github.com/BVictorB/frontend-applications.git .
 ```
-- Install all NPM packages (run this command in both main folders where the package.json file is located)
+- Install all NPM packages
 ```
 npm i
 ```
-- Execute the parcel script to compile everything and start a local static server (http://localhost:1234/)
+- Execute this command to start the local server, the project will automatically open in your browser (or just go to http://localhost:3000/)
 ```
-npm run dev
+npm start
 ```
 ![CLI gif](https://media1.tenor.com/images/356bac3dd24014fd740d196138f3d0f8/tenor.gif?itemid=10933901)  
 _(https://tenor.com/view/command-line-site-not-ready-message-comment-gif-10933901)_
@@ -55,4 +48,6 @@ _(https://tenor.com/view/command-line-site-not-ready-message-comment-gif-1093390
 ## Sources
 - [MDN](https://developer.mozilla.org/)
 - [D3](https://github.com/d3/d3/wiki)
+- [React](https://reactjs.org/docs/getting-started.html)
 - [Data Visualization Course 2018 (by Curran Kelleher)](https://curran.github.io/dataviz-course-2018/)
+- [Data Visualization Course 2020 (by Curran Kelleher)](https://datavis.tech/datavis-2020/)
