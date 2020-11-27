@@ -72,7 +72,7 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
         {calculateDifference(areaPrice, garagePrice) ? <p className="sidebar-pricedif">This parking garage is €{calculateDifference(areaPrice, garagePrice)} compared to the area price.</p> : null}
       </div>
       <div className="sidebar-filter">
-        <h2>Filter on year of opening:</h2>
+        <h2 className="filter-text">Filter on year of opening:</h2>
         <FilterGarages setFilteredGeoGarages={setFilteredGeoGarages} geoGarages={geoGarages}/>
       </div>
       {checkIfBarchartGaragesAreSelected()}
