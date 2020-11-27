@@ -9,7 +9,6 @@ export const removeSelectedGarage = (garage, setSelectedGarages, selectedGarages
 }
 
 export const addSelectedGarage = (setSelectedGarages, garageData, index) => {
-  console.log(garageData)
   setSelectedGarages(prevState => {
     if (prevState.length <= 3) {
       return [ ...prevState, { ...garageData, index: index } ]
