@@ -24,7 +24,7 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
           <p>{sidebarState.garage.name}</p>
           <p>Year of opening: {convertUnixStampToYear(sidebarState.garage.openDate)}</p>
           <p>Capacity: {sidebarState.garage.capacity}</p>
-          <p>Price: €{garagePrice}</p>
+          <p>Price: {typeof garagePrice === 'string' ? garagePrice : `€${garagePrice}`}</p>
         </>
       )
     } else {
@@ -40,7 +40,7 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
         <>
           <h2>Area:</h2>
           <p>{sidebarState.area.description ? sidebarState.area.description[0] : null}</p>
-          <p>Price: €{areaPrice}</p>
+          <p>Price: {areaPrice}</p>
         </>
       )
     } else {
@@ -72,6 +72,7 @@ const Sidebar = ({ sidebarState, geoGarages, setFilteredGeoGarages, selectedGara
         {calculateDifference(areaPrice, garagePrice) ? <p className="sidebar-pricedif">This parking garage is €{calculateDifference(areaPrice, garagePrice)} compared to the area price.</p> : null}
       </div>
       <div className="sidebar-filter">
+        <h2>Filter on year of opening:</h2>
         <FilterGarages setFilteredGeoGarages={setFilteredGeoGarages} geoGarages={geoGarages}/>
       </div>
       {checkIfBarchartGaragesAreSelected()}

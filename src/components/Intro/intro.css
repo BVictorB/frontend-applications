@@ -25,23 +25,13 @@ p {
 
 .car {
   margin-top: 50px;
+  animation: carMove 800ms ease-in-out infinite alternate;
 }
-
-.car:hover {
-  animation: carMove 800ms ease-in-out infinite;
-}
-
 @keyframes carMove {
-  0% {
-    transform: rotate(0deg);
+  from {
+    transform: rotate(1.5deg);
   }
-  33% {
-    transform: rotate(2deg);
-  }
-  66% {
-    transform: rotate(-2deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  to {
+    transform: rotate(-1.5deg);
   }
 }
